@@ -65,7 +65,7 @@ async def on_message(message):
         await client.send_message(message.channel, embed=em)
     if message.content.lower().startswith('!help'):
         file_object = open("README.md", "r")
-        em = discord.Embed(title='Campaign Info', description=file_object.read(), color=0x2db5ef)
+        em = discord.Embed(title='Help', description=file_object.read(), color=0x2db5ef)
         await client.send_message(message.channel, embed=em)
 
 client.run("<token>") #Insert your bots token here

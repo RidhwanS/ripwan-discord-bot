@@ -12,7 +12,7 @@ The bot do a search on wikipedia on <some text> and output an embeded message wi
 The bot will send out campaign information located in campInfo.txt
 
 ### !gitgud
-The bot will post one of 6 fellows telling people to gitgud
+The bot will post one of 6 people telling people to gitgud
 
 ### !8ball <some text>
 The bot will send out a prediction from the 8ball options about <some text>
