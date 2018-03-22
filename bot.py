@@ -31,6 +31,28 @@ eightBalls = {0: 'It is certain',
            19: 'Very doubtful'
 }
 
+eightBallsColours = {0: 0x00FF00,
+           1: 0x00FF00,
+           2: 0xFFFF00,
+           3: 0xFF0000,
+           4: 0x00FF00,
+           5: 0x00FF00,
+           6: 0xFFFF00,
+           7: 0xFF0000,
+           8: 0x00FF00,
+           9: 0x00FF00,
+           10: 0xFFFF00,
+           11: 0xFF0000,
+           12: 0x00FF00,
+           13: 0x00FF00,
+           14: 0xFFFF00,
+           15: 0xFF0000,
+           16: 0x00FF00,
+           17: 0x00FF00,
+           18: 0xFFFF00,
+           19: 0xFF0000
+}
+
 @client.event
 async def on_ready():
     print("Bot is online and connected to Discord")
@@ -61,8 +83,7 @@ async def on_message(message):
     if message.content.lower().startswith('!8ball'):
         args = message.content[6:]
         number = random.randint(0, 19)
-        em = discord.Embed(title='8Ball:' + args, description=eightBalls[number], color=0x2db5ef)
-        await client.send_message(message.channel, embed=em)
+        em = discord.Embed(title='8Ball:' + args, description=eightBalls[number], color=eightBallsColours[number])        await client.send_message(message.channel, embed=em)
     if message.content.lower().startswith('!help'):
         file_object = open("README.md", "r")
         em = discord.Embed(title='Help', description=file_object.read(), color=0x2db5ef)
