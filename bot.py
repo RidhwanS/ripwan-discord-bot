@@ -63,5 +63,9 @@ async def on_message(message):
         number = random.randint(0, 19)
         em = discord.Embed(title='8Ball:' + args, description=eightBalls[number], color=0x2db5ef)
         await client.send_message(message.channel, embed=em)
+    if message.content.lower().startswith('!help'):
+        file_object = open("README.md", "r")
+        em = discord.Embed(title='Campaign Info', description=file_object.read(), color=0x2db5ef)
+        await client.send_message(message.channel, embed=em)
 
 client.run("<token>") #Insert your bots token here
