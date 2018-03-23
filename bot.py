@@ -10,47 +10,37 @@ Client = discord.Client()
 client = commands.Bot(command_prefix="!")
 
 eightBalls = {0: 'It is certain',
-           1: 'As I see it, yes',
-           2: 'Reply hazy try again',
-           3: "Don't count on it",
-           4: 'It is decidedly so',
-           5: 'Most likely',
-           6: 'Ask again later',
-           7: 'My reply is no',
-           8: 'Without a doubt',
-           9: 'Outlook good',
-           10: 'Better not tell you now',
-           11: 'My sources say no',
-           12: 'Yes definitely',
-           13: 'Yes',
-           14: 'Cannot predict now',
-           15: 'Outlook not so good',
-           16: 'You may rely on it',
-           17: 'Signs point to yes',
-           18: 'Concentrate and ask again',
-           19: 'Very doubtful'
+           1: 'Reply hazy try again',
+           2: "Don't count on it",
+           3: 'It is decidedly so',
+           4: 'Ask again later',
+           5: 'My reply is no',
+           6: 'Without a doubt',
+           7: 'Better not tell you now',
+           8: 'My sources say no',
+           9: 'Yes definitely',
+           10: 'Cannot predict now',
+           11: 'Outlook not so good',
+           12: 'You may rely on it',
+           13: 'Concentrate and ask again',
+           14: 'Very doubtful'
 }
 
 eightBallsColours = {0: 0x00FF00,
-           1: 0x00FF00,
-           2: 0xFFFF00,
-           3: 0xFF0000,
-           4: 0x00FF00,
-           5: 0x00FF00,
-           6: 0xFFFF00,
-           7: 0xFF0000,
-           8: 0x00FF00,
+           1: 0xFFFF00,
+           2: 0xFF0000,
+           3: 0x00FF00,
+           4: 0xFFFF00,
+           5: 0xFF0000,
+           6: 0x00FF00,
+           7: 0xFFFF00,
+           8: 0xFF0000,
            9: 0x00FF00,
            10: 0xFFFF00,
            11: 0xFF0000,
            12: 0x00FF00,
-           13: 0x00FF00,
-           14: 0xFFFF00,
-           15: 0xFF0000,
-           16: 0x00FF00,
-           17: 0x00FF00,
-           18: 0xFFFF00,
-           19: 0xFF0000
+           13: 0xFFFF00,
+           14: 0xFF0000
 }
 
 @client.event
@@ -82,8 +72,9 @@ async def on_message(message):
             await client.send_file(message.channel, f, content="GIT GUD")
     if message.content.lower().startswith('!8ball'):
         args = message.content[6:]
-        number = random.randint(0, 19)
-        em = discord.Embed(title='8Ball:' + args, description=eightBalls[number], color=eightBallsColours[number])        await client.send_message(message.channel, embed=em)
+        number = random.randint(0, 14)
+        em = discord.Embed(title='8Ball:' + args, description=eightBalls[number], color=eightBallsColours[number])
+        await client.send_message(message.channel, embed=em)
     if message.content.lower().startswith('!help'):
         file_object = open("README.md", "r")
         em = discord.Embed(title='Help', description=file_object.read(), color=0x2db5ef)
