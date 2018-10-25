@@ -1,6 +1,2 @@
-**System**: Starfinder
-**Starfinder SRD**: http://www.starjammersrd.com/
-**Roll20 Page**: Get Your Own (roll20.net)
-**Starship Sheet**: Get You Own
-**Space Combat Cheat Sheet**: https://tinyurl.com/y9vync83
-**Computer Cheat Sheet**: https://tinyurl.com/y7e38om9
+**System**: Pathfinder 2e Playtest
+**Pathfinder 2e Playtest Downloads**: https://paizo.com/pathfinderplaytest#downloads

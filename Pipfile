@@ -3,8 +3,8 @@ url = "https://pypi.python.org/simple"
 verify_ssl = true
 
 [packages]
-discord = "*"
-wikipedia = "*"
+discord.py = "0.16.12"
+wikipedia = "1.4.0"
 
 [requires]
 python_version = "3.6"
