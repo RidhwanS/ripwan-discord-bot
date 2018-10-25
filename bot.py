@@ -8,6 +8,7 @@ import requests
 import json
 
 client = Bot(command_prefix='!')
+client.remove_command('help')
 
 eightBalls = {0: 'It is certain',
            1: 'Reply hazy try again',
@@ -43,6 +44,12 @@ eightBallsColours = {0: 0x00FF00,
            14: 0xFF0000
 }
 
+@client.command()
+async def help():
+	file_object = open("README.md", "r")
+	em = discord.Embed(title='Help', description=file_object.read(), color=0x2db5ef)
+	await client.say(embed=em)
+
 @client.command(pass_context=True)
 async def wiki(ctx,*args):
 	search = wikipedia.search(' '.join(args))
@@ -64,7 +71,6 @@ async def camp():
 async def gitgud(ctx):
 	number = random.randint(1, 6)
 	imageURL = "Images/gitgud-"+str(number)+".png"
-	#with open(imageURL, 'rb') as f:
 	await client.send_file(ctx.message.channel,imageURL)
 
 @client.command(name='8ball',pass_context=True)
@@ -77,12 +83,12 @@ async def poll(*args):
 	poll_parameters = list(args)
 	question = poll_parameters.count('Q:')
 	number_of_answers = poll_parameters.count('A:')
-	if question == 0 or question > 1 or number_of_answers == 0:
-		await client.say('The Format is, !poll Q: A Question A: Foo A: Bar. Only one Q: and at least one A:')
+	if question == 0 or question > 1 or number_of_answers <= 1:
+		await client.say('The Format is, !poll Q: a question A: option1 A: option2. Only one Q: and at least two A:')
 		return
 	question_index = poll_parameters.index('Q:')
 	if question_index != 0:
-		await client.say('The Format is, !poll Q: A Question A: Foo A: Bar. The Q: has to be first')
+		await client.say('The Format is, !poll Q: a question A: option1 A: option2. The Q: has to be first')
 		return
 	first_answer_index = poll_parameters.index('A:')
 	question_string = ' '.join(poll_parameters[1:first_answer_index])
