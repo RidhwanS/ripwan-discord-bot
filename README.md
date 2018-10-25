@@ -17,5 +17,8 @@ The bot will post one of 6 photos telling people to gitgud
 ### !8ball <some text>
 The bot will send out a prediction from the 8ball options about <some text>
 
+### !poll Q: <some text> A: <some text> A: <some text> .....
+The bot will create a straw poll using Q: to determine the question, and A: the possible answers
+
 ### !help
 The bot will output this file
