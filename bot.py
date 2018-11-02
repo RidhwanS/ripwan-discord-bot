@@ -75,7 +75,8 @@ async def gitgud(ctx):
 
 @client.command(name='8ball',pass_context=True)
 async def eight_ball(ctx,*args):
-	em = discord.Embed(title='8Ball: ' + ' '.join(args), description=random.choice(eightBalls), color=random.choice(eightBallsColours))
+	random_choice = random.randint(1,14)
+	em = discord.Embed(title='8Ball: ' + ' '.join(args), description=eightBalls[random_choice], color=eightBallsColours[random_choice])
 	await client.say(embed=em)
 
 @client.command()
