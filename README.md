@@ -4,7 +4,6 @@ Discord bot to some miscellaneous things
 ## Commands
 When any of the follow commands is typed in any channel the bot will response
 
-
 ### !wiki <some text>
 The bot do a search on wikipedia on <some text> and output an embeded message with the most relevant article, with link, and some text from it
 

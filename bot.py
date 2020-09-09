@@ -45,51 +45,48 @@ eightBallsColours = {0: 0x00FF00,
 }
 
 @client.command()
-async def help():
+async def help(ctx):
 	file_object = open("README.md", "r")
 	em = discord.Embed(title='Help', description=file_object.read(), color=0x2db5ef)
-	await client.say(embed=em)
+	await ctx.send(embed=em)
 
-@client.command(pass_context=True)
-async def wiki(ctx,*args):
+@client.command()
+async def wiki(ctx,args):
 	search = wikipedia.search(' '.join(args))
 	try:
 		result = wikipedia.page(search[0])
-	except wikipedia.exceptions.DisambiguationError as e:
-		await client.say("The stuff you tried to search for had like a billion results. And wikipedia library doesnt like that or something. So RIP")
+	except wikipedia.exceptions.DisambiguationError:
+		await ctx.send("The stuff you tried to search for had like a billion results. And wikipedia library doesnt like that or something. So RIP")
 		return
 	em = discord.Embed(title='Wikipedia: ' + result.title, description=(result.summary[:500] + '..') if len(result.summary) >= 500 else result.summary, color=0x2db5ef, url=result.url)
-	await client.say(embed=em)
-
-@client.command()
-async def camp():
-	file_object = open("Files/campInfo.txt", "r")
-	em = discord.Embed(title='Campaign Info', description=file_object.read(), color=0x2db5ef)
-	await client.say(embed=em)
+	await ctx.send(embed=em)
 
 @client.command(pass_context=True)
 async def gitgud(ctx):
 	number = random.randint(1, 6)
 	imageURL = "Images/gitgud-"+str(number)+".png"
-	await client.send_file(ctx.message.channel,imageURL)
+	file_object = open(imageURL,"rb")
+	f_ob = discord.File(file_object)
+	await ctx.send(file=f_ob)
 
-@client.command(name='8ball',pass_context=True)
+@client.command(name='8ball')
 async def eight_ball(ctx,*args):
 	random_choice = random.randint(1,14)
 	em = discord.Embed(title='8Ball: ' + ' '.join(args), description=eightBalls[random_choice], color=eightBallsColours[random_choice])
-	await client.say(embed=em)
+	await ctx.send(embed=em)
 
 @client.command()
-async def poll(*args):
+async def poll(ctx,*args):
 	poll_parameters = list(args)
+	print(list(args))
 	question = poll_parameters.count('Q:')
 	number_of_answers = poll_parameters.count('A:')
 	if question == 0 or question > 1 or number_of_answers <= 1:
-		await client.say('The Format is, !poll Q: a question A: option1 A: option2. Only one Q: and at least two A:')
+		await ctx.send('The Format is, !poll Q: a question A: option1 A: option2. Only one Q: and at least two A:')
 		return
 	question_index = poll_parameters.index('Q:')
 	if question_index != 0:
-		await client.say('The Format is, !poll Q: a question A: option1 A: option2. The Q: has to be first')
+		await ctx.send('The Format is, !poll Q: a question A: option1 A: option2. The Q: has to be first')
 		return
 	first_answer_index = poll_parameters.index('A:')
 	question_string = ' '.join(poll_parameters[1:first_answer_index])
@@ -98,6 +95,6 @@ async def poll(*args):
 	answers_list = answers_list[1:]
 	data = {"title": question_string, "options": answers_list}
 	poll = requests.post("https://www.strawpoll.me/api/v2/polls", json=data, headers={"Content-Type": "application/json"})
-	await client.say("https://www.strawpoll.me/" + str(json.loads(poll.text)['id']))
-	
-client.run("<token>") #Insert your bots token here
+	await ctx.send("https://www.strawpoll.me/" + str(json.loads(poll.text)['id']))
+
+client.run("token") #Insert your bots token here
