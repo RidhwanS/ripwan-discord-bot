@@ -51,7 +51,7 @@ async def help(ctx):
 	await ctx.send(embed=em)
 
 @client.command()
-async def wiki(ctx,args):
+async def wiki(ctx,*args):
 	search = wikipedia.search(' '.join(args))
 	try:
 		result = wikipedia.page(search[0])
