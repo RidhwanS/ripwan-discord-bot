@@ -54,7 +54,7 @@ async def help(ctx):
 async def wiki(ctx,*args):
 	search = wikipedia.search(' '.join(args))
 	try:
-		result = wikipedia.page(search[0])
+		result = wikipedia.page(search[0],auto_suggest=False)
 	except wikipedia.exceptions.DisambiguationError:
 		await ctx.send("The stuff you tried to search for had like a billion results. And wikipedia library doesnt like that or something. So RIP")
 		return
